@@ -12,4 +12,6 @@
   
  - Explain how WMS, WMTS, and XYZ Tiles work
 
+ - Given a coordinate in latitude and longitude and its CRS (coordinate reference system), how can you reproject the coordinates to a new CRS?
+
  - 
