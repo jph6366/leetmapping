@@ -14,4 +14,4 @@
 
  - Given a coordinate in latitude and longitude and its CRS (coordinate reference system), how can you reproject the coordinates to a new CRS?
 
- - 
+ - What is the difference between vector data sets and raster data sets?
