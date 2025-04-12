@@ -7,8 +7,96 @@
 # Geospatial Practice Questions
 
 
- - How to measure the distance from New York City, NY to London, UK, given their lattitude and longitude?
-   - How about measuring the distance between two points in New York City?
+ ## What is the most accurate method of measuring distance between two points on Earth?
+
+### Reading
+- [calculations for lati­tude/longi­tude points, with the formulas and code fragments for implementing them](https://www.movable-type.co.uk/scripts/latlong.html)
+- [Vincenty solutions of geodesics on the ellipsoid](https://www.movable-type.co.uk/scripts/latlong-vincenty.html)
+- [algorithms for the computation of geodesics on an ellipsoid of revolution are given](https://link.springer.com/article/10.1007/s00190-012-0578-z)
+  - Charles Karney has improved on Vincenty’s method with a method which has errors in nanometers (and always converges on antipodal points)
+- [GeographicLib is collection of libraries by Charles Karney which started in 2008.](https://geographiclib.sourceforge.io/)
+  - The C++ library now offers:
+    - geodesic and rhumb line calculations;
+    - conversions between geographic, UTM, UPS, MGRS, geocentric, and local cartesian coordinates;
+    - gravity (e.g., EGM2008) and geomagnetic field (e.g., WMM2020) calculations.
+
+
+ #### The first question one must ask is what coordinate reference system (CRS) are these two points represented in
+   - Assuming 2D Geographic coordinates (longitude, latitude)
+ #### The followup question should then be how precise are our coordinates?
+   - Meaning what degree to which is the longitude and lattitude pins down an actual point on Earth.
+   - In Computer Science, a **64 bit floating point precision** is required to represent geodectic coordinates accurately. This includes both geocentric coordinates, which are typically very large numbers, and geographic coordinates, which are smaller but very precise numbers. Wherever possible use 64-bit floating point types for representing geodetic coordinates
+     - In C++ use double instead of float, likewise use glm::dvec3 instead of glm::vec3.
+     - In Unity use Unity.Mathematics.double3 instead of Vector3.
+     - In JavaScript numbers are always stored as double precision floats. However, take care when using typed arrays to avoid Float32Array.
+     - The blog post Precisions, Precisions goes over some strategies for rendering global scale coordinates on the GPU with high precision.
+       
+   - Approximately one degree of latitude covers
+
+     10<sup>7</sup>/ 90 = 111,111 m
+
+   - And a degree of longitude covers is about the same
+  
+   - Thus, it is always safe to figure that the
+
+   **sixth decimal place in one decimal degree has 111,111 / 10<sup>6</sup> = about 1/9 meter = ~4 inches of precision**
+   
+   #### What about about other decimal places?
+    
+    - the first decimal place = ~11.1 km
+    - the second decimal place = ~1.1 km
+    - the third decimal place = ~110 m
+    - the fourth decimal place = ~11 m
+    - the fifth decimal place = ~1.1 m
+    - the sixth decimal place = ~11 cm
+    - the seventh decimal place = ~1.1 cm
+    - the eighth decimal place = ~1.1 mm
+    - the ninth decimal place = ~110 microns
+   ...
+   - Thirteen decimal places will pin down the location to...
+
+   **111,111 / 10<sup>13</sup> = 1 angstrom ; around half the thickness of a small atom**
+
+  #### What's the difference between geocentric and geodetic latitude?
+
+  - I also forgot to mention the Earth is oblate spheroid rather than a sphere so there are two different systems for desecribing latitude
+  - A point described using geocentric latitude and a point described using geodetic latitude can differ by tens of kilometers.
+
+![image](https://github.com/user-attachments/assets/7e195e42-1857-49ce-88c1-5eb1c11c68be)
+ 
+  - Only the **geodetic surface normal** should be used when precision matters
+
+ #### Now one can infer the level of precision of our coordinates, so how does one go about measuring the distance between two points on Earth?
+
+- Well if one were measuring on a sphere then the **Spherical Law of Cosines** or the **Haversine Formula**. Using these on an ellipsoid typically result in less than 0.3% errors.
+  - Although the Law of Cosines is preferable to the Haversine Formula due to the formula [not entailing the evaluation of trigonometric functions](https://gis.stackexchange.com/questions/4906/why-is-law-of-cosines-more-preferable-than-haversine-when-calculating-distance-b?rq=1#:~:text=A%20historical%20footnote%3A).
+
+  - pseudo-code for cosine formula
+  
+          distance = acos(SIN(lat1)*SIN(lat2)+COS(lat1)*COS(lat2)*COS(lon2-lon1))*6371
+  
+  - pseudo-code for haversine formula
+  
+          dLat = (lat2-lat1)
+          dLon = (lon2-lon1)
+          a = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2)
+          distance = 6371 * 2 * atan2(sqrt(a), sqrt(1-a))    
+    
+- But if one is measuring on an oblate spheroid, then one can opt to use **Vincenty's Formula**
+  - **Vincenty’s solution for the distance between points on an ellipsoidal earth model is accurate to within 0.5 mm distance,0.000015″ bearing,** on the ellipsoid being used.
+  - Vincenty’s inverse solution can fail on nearly antipodal points, two points of a sphere are called antipodal or diametrically opposite if they are the endpoints of a diameter, a straight line segment between two points on a sphere and passing through its center. This can happen with distances greater than 19,936 km, or within around 75 km of the antipodal point.
+
+  ![image](https://github.com/user-attachments/assets/754e9502-090a-4a78-a997-2d8103c55c5d)
+
+- **Millimetre precision is stretching the limits of geodetic survey techniques**: very few points will have been surveyed to such precision
+  - Further, the familiar WGS-84 (World Geodetic System 1984) has no ‘physical realisa­tion’ – it is not tied to geodetic groundsta­tions, just to satellites – and is defined to be accurate to no better than around ±1 metre
+  - Working to an accuracy of better than ±1 metre, plate tectonic movements become significant. Depending on the datum it’s defined in, any given point will most likely have shifted many millimetres from where it was last year.
+    - The [**International Terrestial Reference System and Frame**](https://itrf.ign.fr/en/homepage) was developed where the latitude/longitude of a coordinate of a position will vary over time.
+  - So for millimetre accuracy to be relevant, you need to know a fair bit about the reference frames, datums, and epochs of your coordinates, and other param­eters of your measure­ments. 
+![image](https://github.com/user-attachments/assets/80e662e7-bb13-4b9d-be25-ccd36fa5e269)
+
+
+# miscellaneous
   
  - Explain how WMS, WMTS, and XYZ Tiles work
 
