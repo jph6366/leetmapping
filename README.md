@@ -13,6 +13,9 @@
     - geodesic and rhumb line calculations;
     - conversions between geographic, UTM, UPS, MGRS, geocentric, and local cartesian coordinates;
     - gravity (e.g., EGM2008) and geomagnetic field (e.g., WMM2020) calculations.
+- [centimeter-level, robust GNSS-aided inertial post-processing for mobile mapping without local reference stations](https://www.applanix.com/news/post-processed-centerpoint-rtx-with-pospac-8.pdf)
+- [robust inertial post-processing aided by trimble propoint gnss technology for urban hd mapping and autonomous navigation](https://downloads.ctfassets.net/9k5dj5b59lqq/1QRYJYxlYVTOe5K51PKlNH/f71bd4a058cd0084fb3023fb8746c0cb/White-Paper_Robust-Inertial-Post-Processing-Aided-by-Trimble-Propoint-GNSS-Technology-For-Urban-HD-Mapping-and-Autonomous-Na.pdf)
+- [Applanix SmartBase](https://assets.ctfassets.net/9k5dj5b59lqq/5Ff15GhCa0oTuW9lsOHyYc/a67dc562dcc87eb08ac46eb06b364225/applanix_smartbase.pdf) & [Applanix InFusion+](https://assets.ctfassets.net/9k5dj5b59lqq/77Pf1UjfXpZ6kE5xPMFrxY/8cd418e088d198b2da171615680065cf/Applanix-In_Fusion-Plus-White-Paper.pdf) white papers, software for improved robustness, accuracy, and productivity of mobile mapping and positioning
 
 
  #### The first question one must ask is what coordinate reference system (CRS) are these two points represented in
@@ -88,6 +91,17 @@
     - The [**International Terrestial Reference System and Frame**](https://itrf.ign.fr/en/homepage) was developed where the latitude/longitude of a coordinate of a position will vary over time.
   - So for millimetre accuracy to be relevant, you need to know a fair bit about the reference frames, datums, and epochs of your coordinates, and other param­eters of your measure­ments. 
 ![image](https://github.com/user-attachments/assets/80e662e7-bb13-4b9d-be25-ccd36fa5e269)
+
+
+ #### Map-based Localization
+
+- A map-based localization system uses optical sensors to match features in captured imagery or LiDAR scans against an existing georeferenced
+database of features (ie. a map). This process is also referred to as **“map aiding”**.
+ - If the map is accurate and georeferenced with respect to a global coordinate system, the resultant vehicle positions are also
+accurate and georeferenced with respect to the global coordinate system.
+   - If a map does not exist, the most sophisticated MBL
+solutions can build a local map from the imaging sensors while the vehicle is driving, and then determine the vehicle’s relative
+position within that map. Such a process is referred to as **Simultaneous Location and Mapping or SLAM**.
 
 
 # miscellaneous
