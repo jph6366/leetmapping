@@ -1,10 +1,4 @@
-# leetmapping
-
-
-
-
-
-# Geospatial Practice Questions
+# 101 Geospatial Questions
 
 
  ## What is the most accurate method of measuring distance between two points on Earth?
