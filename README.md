@@ -1,5 +1,65 @@
-# 101 Geospatial Questions
 
+
+# Open Geospatial Consortium Standards
+
+## What is the Web Feature Service (WFS)?
+
+- Web Feature Service (WFS) is a standard created by the Open Geospatial Consortium (OGC) for creating, modifying, and exchanging vector format geographic information on the internet using HTTP.
+   - A WFS encodes and transfers information in Geography Markup Language (GML), a subset of XML.
+
+#### Overview
+
+- Rather than sharing geographic information at the file level using FTP, WFS offers direct fine-grained access to geographic information at the feature and feature property level.
+- The standard specifies discovery operations, query operations, locking operations, tranasction operations, and operations to manage stored, parameterized query expressions.
+
+#### Reading
+
+- [GeoServer WFS Reference](https://docs.geoserver.org/latest/en/user/services/wfs/reference.html)
+- [OGC WFS Standards](https://www.ogc.org/standards/wfs/)
+
+### Notes
+
+- WFS is primarily a feature access services but also includes elements of a feature type service, a coordinate conversion/transformation service and geographic format conversion service.
+- The WFS standard defines the framework for providing access to, and supporting transactions on, discrete geographic features in a manner that is independent of the underlying data source.
+   - Through a combination of discovery, query, locking, and transaction operations, users have access to the source spatial and attribute data in a manner that allows them to interrogate, style, edit (CRUD), and download individual features.
+      - The **transactional capabilities of WFS support the development and deployment of collaborative mapping applications**
+
+(All versions of WFS support these)
+
+ **Operations**
+  - [x] _GetCapabilities_
+      - [ ] Generates a metadata document describing a WFS service provided by server as well as valid WFS operations and parameters
+  - [x] _DescribeFeatureType_
+      - [ ] Returns a description of feature types supported by WFS service
+  - [x] _GetFeature_
+      - [ ] Returns a selection of features from a data source including geometry and attribute values
+  - [x] _LockFeature_
+      - [ ] Prevents a feature from being edited through a persistent feature lock
+  - [x] _Transaction_
+      - [ ] Edits existing feature types by creating, updating, and deleting
+
+(version 2.0.0 only)
+  - [x] _GetPropertyValue_
+      - [ ] Retrieves the value of a feature property or part of the value of a complex feature property from the data store for a set of features identified using a query expression
+  - [x] _GetFeatureWithLock_
+      - [ ] Returns a selection of features and also applies a lock on those features
+  - [x] _CreateStoredQuery_
+     - [ ] Create a stored query on the WFS server
+  - [x] _DropStoredQuery_
+     - [ ] Deletes a stored query from the WFS server
+  - [x] _ListStoredQueries_
+     - [ ] Returns a list of the stored queries on a WFS server
+  - [x] _DescribeStoredQueries_
+     - [ ] Returns a metadata document describing the stored queries on a WFS server
+(version 1.1.0 only)
+  - [x] _GetGMLObject_
+      - [ ] Retrieves features and elements by ID from a WFS
+
+
+## What is the Geography Markup Language (GML)?
+
+
+# 101 Geospatial Questions
 
  ## What is the most accurate method of measuring distance between two points on Earth?
 
