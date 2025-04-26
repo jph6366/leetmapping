@@ -61,6 +61,7 @@
 ## What is the Geography Markup Language (GML)?
 
 - The Geography Markup Language (GML) is an XML grammar for expressing geographical features. GML serves as a modeling language for geographic systems as an open interchange format for geographic transactions on the Internet.
+-  Clients and servers with interfaces that implement the Web Feature Service Interface Standard read and write GML data.
 
 #### Overview
 
