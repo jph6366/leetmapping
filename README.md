@@ -17,6 +17,8 @@
 - [GeoServer WFS Reference](https://docs.geoserver.org/latest/en/user/services/wfs/reference.html)
 - [OGC WFS Standards](https://www.ogc.org/standards/wfs/)
 
+<img src="wms-wfs-wcs-schema.png" width="300" />
+
 ### Notes
 
 - WFS is primarily a feature access services but also includes elements of a feature type service, a coordinate conversion/transformation service and geographic format conversion service.
@@ -79,6 +81,8 @@ For example, the GML standard can be used to encode dynamic features, spatial an
 
 - [San Jose State University](https://www.sjsu.edu/faculty/watkins/gml.htm)
 - [OGC GML Standards](https://www.ogc.org/standards/gml/)
+
+![ogc-portrayal-model-services](OGC-Portrayal-Model-with-its-different-services-WMS-WFS-representation-components.png)
 
 ### Notes
 
