@@ -58,6 +58,105 @@
 
 ## What is the Geography Markup Language (GML)?
 
+- The Geography Markup Language (GML) is an XML grammar for expressing geographical features. GML serves as a modeling language for geographic systems as an open interchange format for geographic transactions on the Internet.
+
+#### Overview
+
+- GML was to be a content-orient XML application completely separate from the area of how to display maps and others types of geospatial information on the web.
+- OGC intended to create an unambiguous system of coding geographic information that would make possible the storage and the sharing of such information.
+   - GML intended to avoid the problem of missing information for geographic documents, by using XML to specify mandatory information for a file by requiring all documents be validated by a parsing program.
+- There are two parts to the XML-based grammar:
+ 1. the (GML) schema that describes the document
+ 2. the (GML) instance document that contains the actual data
+
+_However, the developers of GML envision communities working to define community-specific application schemas that are specialized extensions of GML._
+
+(e.g. CityGML, SensorML, IndoorML, O&M, GeoSciML,etc.)
+
+For example, the GML standard can be used to encode dynamic features, spatial and temporal topology, complex geometric property types and coverages.
+
+#### Reading
+
+- [San Jose State University](https://www.sjsu.edu/faculty/watkins/gml.htm)
+- [OGC GML Standards](https://www.ogc.org/standards/gml/)
+
+### Notes
+
+- The general scheme of GML is that a geographic document involves the specification of a set of features.
+   - These features are described by properties, which may be of two types:
+
+**GML is that a geographic document involves the specification of a set of features described by properties.**
+
+ #### Simple Properties and Geometric Properties
+ 
+ 1. Simple properties are those that may be given by basic data forms: strings of characters (names), integers, real numbers or true/false (boolean) values.
+ 2. Geometric properties are created using **Points, LineStrings, and Polygons** with the special case of closed linearRings which are merely closed LineStrings. 
+
+- Polygons are more than just LinearRings because there may be an interior boundary as well as an exterior boundary.
+- In addition to these primitive geometric entities GML makes provision for sets (collections) of these elements: i.e., **MultiPoint, MultiLineString and MultiPolygon**. These are made up, as the names imply, of Points, LineStrings and Polygons. GML has another geometric element that can include geometric elements of any type. This is called a **GeometryCollection**.
+- A **GeometryCollection** can also include other **GeometryCollections**.
+
+ **How to define a feature collection in a GML application schema that complies with level SF-0 of this profile**
+ ```
+1 <element name="FeatureCollectionName"
+2    type="[prefix:]FeatureCollectionNameType"
+3    substitutionGroup="gml:AbstractGML"/>
+4 <complexType name="FeatureCollectionNameType">
+5    <complexContent>
+6       <extension base="gml:AbstractFeatureType">
+7          <sequence minOccurs="0" maxOccurs="unbounded">
+8             <element name="featureMember">
+9                <complexType>
+10                   <complexContent>
+11                      <extension base="gml:AbstractFeatureMemberType">
+12                          <sequence>
+13                            <element ref="gml:AbstractFeature"/>
+14                          </sequence>
+15                      </extension>
+16                   </complexContent>
+17                </complexType>
+18             </element>
+19          </sequence>
+20       </extension>
+21    </complexContent>
+22 </complexType>
+```
+
+ **How to define a feature type in a GML application schema that complies with level SF-0 of this profile**
+
+```
+1 <xsd:element name="FeatureTypeName"
+2    type="[prefix:]FeatureTypeNameType"
+3    substitutionGroup="gml:AbstractFeature"/>
+4
+5 <xsd:complexType name="FeatureTypeNameType">
+6    <xsd:complexContent>
+7       <xsd:extension base="gml:AbstractFeatureType">
+8          <xsd:sequence>
+9
+10          <!-- … zero or more element declarations as described in 8.4.4 … -->
+11
+12          </xsd:sequence>
+13       </xsd:extension>
+14    </xsd:complexContent>
+15 </xsd:complexType>
+```
+
+**Basic Data Types**
+
+In addition to the GML geometric property types defined in Table 6, this profile supports the following list of basic data types:
+
+1. Integers (with optional specified value range and number of digits)
+2. Measurements, that include a reference to units of measurement
+3. Character strings (with optional specified maximum length or fixed length)
+4. Date
+5. Boolean
+6. Binary data
+7. URI references to local or remote resources
+8. References to other resources
+9. Character strings whose values are from a code list
+10. Reals (with optional specified number of digits, decimal precision and value
+range)
 
 # 101 Geospatial Questions
 
