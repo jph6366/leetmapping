@@ -163,6 +163,45 @@ In addition to the GML geometric property types defined in Table 6, this profile
 10. Reals (with optional specified number of digits, decimal precision and value
 range)
 
+## What is the GeoPose?
+
+- the OGC GeoPose Standard defines the encodings for the real world position and orientation of a real or a digital object in a machine-readable (JSON) format.
+   - It provides a simple way to create a transformation matrix based on the **World Geodectic System (WGS84)** ellipsoid, to specify the position and the rotation of anything relative to the surface of the planet. Thus, facilitating the conversion between local, euclidean coordinates (X, Y, Z) amd global, geographic coordinates (longitude, latitude and altitude/height).
+
+#### Overview
+
+- Standard for exchanging location and orientation of real or virtual geometric objects, **Poses**, within reference frames anchored to the earth's surface, **Geo**, or within other astronomical coordinate systems.
+- The standard specifies two **Basic forms** with no configuration options for common use cases, an **Advanced form** with more flexibility for more complex applications, and five composite GeoPose structures that support time series plus chain and graph structures. These _eight Standardization Targets are independent of each other_.
+   - For each _Standardization Target_, each implementation technology and corresponding encoding format defines the encoding or serialization specified in a manner appropriate to that technology.
+#### Reading
+
+- [3D and (Geo)Spatially-anchored Collaboration on the Web with OGC GeoPose ](https://www.youtube.com/watch?v=F_TjgtvWpyA&t=287s)
+- [OGC GeoPose Standards](https://www.ogc.org/standards/geopose/)
+
+### Notes
+
+- GeoPose 1.0 specifies a single-encoding in JSON format. Each Standardization Target has a JSON Schema encoding specification.
+   - The key standardization requirements specify that concrete JSON-encoded GeoPose data objects must conform to the corresponding JSON schema definition.
+- GeoPose 1.0 makes no assumptions about the interpretation of external specfications, for example, of reference frames. Nor does it assume or constrain services or interfaces providing conversion between GeoPoses of different types or relying on different external reference frame definitions.
+
+**Critically, working with GeoPoses enables the definition of shared interaction spaces where multiple agents can share information in an interoperable way**
+
+### Challenges Yet to Overcome
+
+1. Low Accuracy
+
+Currently, built-in (mobile-web) sensors have rather poor accuracy. Millimetric accuracy would require aided-positioning or Visual Positioning Systems.
+
+2. Cybersecurity Risks
+
+Sharing your physical position or photos with third parties poses significant privacy and security risks. 
+
+3. Additional Computation
+
+Translating geospatial coordinates into the transform matrices that 3D hardware operates with requires the use of trigonometric functions that are computationally expensive.
+
+
+
 # 101 Geospatial Questions
 
  ## What is the most accurate method of measuring distance between two points on Earth?
