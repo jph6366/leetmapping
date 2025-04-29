@@ -207,6 +207,19 @@ Translating geospatial coordinates into the transform matrices that 3D hardware 
 
 # 101 Geospatial Questions
 
+## How convert screen coordinates to plane coordinates and then to geographic coordinates?
+
+
+1. **Screen to Plane Coordinates**:  
+    Use the inverse transformation matrix of the plane. This takes the screen coordinates (typically in pixels) and maps them onto the plane’s coordinate system.
+2. **Plane to Geographic Coordinates**:  
+    Once in plane coordinates (2D XY), you have a couple of options based on your needs:
+
+- **Tile Coordinates**: If working within a Web Map framework, you can transform plane coordinates to tile coordinates. This allows you to utilize the Web Map tile logic and scales directly with zoom levels.
+- **Ellipsoidal Geographic Coordinates**: For more precise geospatial work, apply a tangent plane transformation using geodesic formulas. This involves projecting from Earth-centered, Earth-fixed (ECEF) coordinates onto the tangent plane’s East-North-Up (ENU) system, centered at a reference point on the Earth’s ellipsoid.
+
+Each of these transformations can be applied in both directions, allowing for conversions from geographic to screen coordinates and vice versa.
+
  ## What is the most accurate method of measuring distance between two points on Earth?
 
 ### Reading
