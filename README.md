@@ -344,3 +344,33 @@ position within that map. Such a process is referred to as **Simultaneous Locati
   - Conformality enforces the condition that, at a point, angles are preserved and scale error is the same in all directions. These qualities preserve shape locally, and it makes them particularly useful for calculations involving directions, azimuths, and distances.
   - Both adopted properties of conformality and equal area preservation (which are mutually exclusive) are derived from Lambert's Composition of Terrestial and Celestial Maps
 
+## Convert a GPS coordinate to a pixel position in a Web Mercator tile
+
+https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#:~:text=Example%3A%20Convert%20a%20GPS%20coordinate%20to%20a%20pixel%20position%20in%20a%20Web%20Mercator%20tile%5Bedit%20%7C%20edit%20source%5D
+
+## What is Slippy Map?
+
+#### Reading
+[OpenStreetMapWiki/Slippy_map](https://wiki.openstreetmap.org/wiki/Slippy_map)
+[OpenStreetMapWiki/Slippy_map_tilenames](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames)
+### Notes
+
+- Slippy map is a tiled web map or tile.
+   - A web map displayed seamlessly joining dozens of individually requested data files, called "tiles".
+   - In general, modern web maps which let you zoom and pan around (the map slips around when you drag the mouse).
+- In technical details, slippy map is an AJAX component.
+   - JavaScript runs in the browser, which dynamically requests maps from a server in the background (without reloading the whole HTML page) to give smooth slippy zoomy map browsing experience.
+      - The map image is built up of tiles that are rendered from the tile server, the process of rendering, going from vector to raster map data, baking style choices into bitmap images, is a fairly resource-intensive process.
+- Most tiled web maps follow certain Google Maps conventions:
+   - Tiles are 256x256 pixel
+   - At the outer most zoom level, 0, the entire world can be rendered in a single map tile.
+   - Each zoom level doubles in both dimensions, so a single tile is replaced by 4 tiles when zooming in. This means that about 22 zoom levels are sufficient for most practical purposes.
+   - The Web Mercator projection is used, with latitude limits of around 85 degrees.
+   - The de facto OpenStreetMap standard, known as Slippy Map Tilenames or XYZ, follows these and adds more:
+      - An X and Y numbering schem
+      - PNG images for tiles
+      - Images are served through a Web server, with a URL like http://.../Z/X/Y.png, where Z is the zoom level, and X and Y identify the tile.
+- **The Numbering Schemes:**
+   - Google Maps / OpenStreetMap: (0 to 2zoom-1, 0 to 2zoom-1) for the range (−180, +85.0511) - (+180, −85.0511)
+   - Tile Map Service: (0 to 2zoom-1, 2zoom-1 to 0) for the range (−180, +85.0511) - (+180, −85.0511). (That is, the same as the previous with the Y value flipped.)
+   - QuadTrees, used by Microsoft.
