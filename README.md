@@ -173,6 +173,9 @@ range)
 - Standard for exchanging location and orientation of real or virtual geometric objects, **Poses**, within reference frames anchored to the earth's surface, **Geo**, or within other astronomical coordinate systems.
 - The standard specifies two **Basic forms** with no configuration options for common use cases, an **Advanced form** with more flexibility for more complex applications, and five composite GeoPose structures that support time series plus chain and graph structures. These _eight Standardization Targets are independent of each other_.
    - For each _Standardization Target_, each implementation technology and corresponding encoding format defines the encoding or serialization specified in a manner appropriate to that technology.
+
+<img src=https://github.com/user-attachments/assets/7ebd61d0-da17-484f-8a13-5dfb41ab7e4a/ width=400>
+
 #### Reading
 
 - [3D and (Geo)Spatially-anchored Collaboration on the Web with OGC GeoPose ](https://www.youtube.com/watch?v=F_TjgtvWpyA&t=287s)
