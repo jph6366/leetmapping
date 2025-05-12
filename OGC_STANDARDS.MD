@@ -218,5 +218,10 @@ Sharing your physical position or photos with third parties poses significant pr
       - a glTF asset includes geometry and texture information for a single tile, and may be extended to include metadata, model instancing, and compression.
    - There can be legacy 3D Tiles 1.0 tile formats specified as a Batched 3D Model, Instanced 3D Model, Point Cloud, Composite and more.
 
+- Tiles are organized in a tree which incorporates the concept of Hierarchial Level of Detail (HLOD) for optimal rendering of spatial data.
+   - Each tile has a bounding volume, an object defining a spatial extent completely enclosing it content.
+      - The tree has spatial coherence; the content for child tiles are completely inside the parent's bounding volume.
+   - A tileset may use a 2D spatial tiling scheme similar to raster and vector tiling schemes that serve predefined tiles at several levels of details or zoom levels, although the tree can be any spatial data structure with spatial coherence, including k-d trees, quadtrees, octrees, and grids.
+
 
 
