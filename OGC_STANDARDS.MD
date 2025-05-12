@@ -201,4 +201,22 @@ Sharing your physical position or photos with third parties poses significant pr
 
 3. Additional Computation
 
-Translating geospatial coordinates into the transform matrices that 3D hardware operates with requires the use of trigonometric functions that are computationally expensive.
+
+
+## What are the 3D Tiles?
+
+- 3D Tiles is the open standard for massive, heterogeneous 3D geospatial datasets such as point clouds, buildings, and photogrammetry.
+   - Built on glTF and other 3D data types, 3D tiles is a streamable, optimized format designed for sharing, visualizing, fusing, interacting with, and analyzing 3D geospatial content across desktop, web, and mobile applications.
+      - 3D geospatial content, including photogrammetry models, BIM/CAD, 3D buildings, instanced features, and point clouds, can be converted into 3D Tiles and combined into a single dataset for seamless performance and real-time analytics including measurements, visibility analysis, styling and filtering.
+         - The foundation of 3D Tiles is a spatial data structure that enables hierarchial level of detail so only visible tiles are streamed and rendered, improving overall performance.
+
+### Overview
+- A 3D Tiles data set, called a tileset, contains any combination of tile formats organized into a spatial data structure. 
+- 3D Tiles are declarative, extendable, and applicable to various types of 3D dat.
+- glTF 2.0 iss the primary tile format for the 3D tiles.
+   - glTF is an open specification designed for the efficient transmission and loading of 3D content
+      - a glTF asset includes geometry and texture information for a single tile, and may be extended to include metadata, model instancing, and compression.
+   - There can be legacy 3D Tiles 1.0 tile formats specified as a Batched 3D Model, Instanced 3D Model, Point Cloud, Composite and more.
+
+
+
