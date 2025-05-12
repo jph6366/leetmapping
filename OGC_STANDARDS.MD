@@ -227,9 +227,62 @@ Sharing your physical position or photos with third parties poses significant pr
 #### Example View
 
 - Tilesets, the core element of 3D Tiles, describes its hierarchial structure in JSON.
-
+- The main tileset JSON contains a basic description of the asset and general properties.
+- The geometric error is used to determine when the root tile should be rendered
+- Each tile contains a bounding volume that encloses the content of the tile and al children, also contains geometric error that determines when the children should be rendered.
 ``` JSON
 {
-   "assets": { ... }
+    "asset": { ... },
+    "properties": { ... },
+    "geometricError": 100,
+    "root": {
+       "geometricError": 20,
+       "boundingVolume": {
+       "region": [ ... ]
+       },
+    "refine": "ADD",
+    "children": [
+       {
+       "geometricError": 10,
+       "boundingVolume": { ... },
+       "content": {
+       "uri": "house.b3dm"  // Batched 3D Model rendered at low level of detail
+       },
+       "children": [
+          {
+          "geometricError": 5,
+          "boundingVolume": { ... },
+          "content": {
+             "uri": "detailsA.b3dm" // child tiles of parent b3dm rendered at higher level of detail
+             },
+          }, {
+          "geometricError": 5,
+          "boundingVolume": { ... },
+          "content": {
+             "uri": "detailsB.b3dm" // refinement strategies define the relationship of HLOD btwn models & tiles
+             },
+          }
+       ]
+       }, {
+       "geometricError": 10,
+       "boundingVolume": { ... },
+       "content": {
+          "uri": "tree.pnts" // different tilesets can be combined in one tileset
+          },
+       }, {
+       "geometricError": 10,
+       "boundingVolume": { ... },
+       "content": {
+          "uri": "fence.i3dm" // instanced 3D model where a simple geometry is rendered multiple times, at different positions
+          },
+       }, {
+       "geometricError": 10,
+       "boundingVolume": { ... },
+       "content": {
+          "uri": "external.json"
+          },
+       }
+       ]
+    }
 }
 ```
