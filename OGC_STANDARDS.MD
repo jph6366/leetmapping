@@ -224,4 +224,12 @@ Sharing your physical position or photos with third parties poses significant pr
    - A tileset may use a 2D spatial tiling scheme similar to raster and vector tiling schemes that serve predefined tiles at several levels of details or zoom levels, although the tree can be any spatial data structure with spatial coherence, including k-d trees, quadtrees, octrees, and grids.
 
 
+#### Example View
 
+- Tilesets, the core element of 3D Tiles, describes its hierarchial structure in JSON.
+
+``` JSON
+{
+   "assets": { ... }
+}
+```
