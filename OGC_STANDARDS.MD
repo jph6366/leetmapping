@@ -230,7 +230,7 @@ Sharing your physical position or photos with third parties poses significant pr
 - The main tileset JSON contains a basic description of the asset and general properties.
 - The geometric error is used to determine when the root tile should be rendered
 - Each tile contains a bounding volume that encloses the content of the tile and al children, also contains geometric error that determines when the children should be rendered.
-``` JSON
+``` JavaScript
 {
     "asset": { ... },
     "properties": { ... },
