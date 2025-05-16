@@ -4,4 +4,4 @@
 
 ## [Open Geospatial Consortium Standards](https://github.com/jph6366/leetmapping/blob/main/OGC_STANDARDS.MD)
 
-## [Point Cloud Data Organization](https://github.com/jph6366/leetmapping/blob/main/POINTCLOUD_DATA_ORGANIZATION.MD)
+## [Point Cloud Data Organization](https://github.com/jph6366/leetmapping/blob/main/PCL_DATA_ORGANIZATION.MD)
